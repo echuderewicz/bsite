@@ -1,0 +1,504 @@
+Section 1:
+  Lecture 1 - Course Overview
+
+Section 2:
+  Lecture 2 - What is Git?
+
+  Lecture 3 - Intro to Git
+
+  Lecture 4 - Git your hands dirty
+    git --version
+    git config --global user.name "Eric Chuderewicz"
+    git config --global user.email "echuderewicz@gmail.com"
+    creating a brand new reposity: git init
+    git add <name_of_file>
+    git commit -m "my first commit"
+    to restore your files if something happens type below:
+    git checkout -- .
+    to clone from Git repo: navigate to the directory you would like to clone to on your computer:
+    git clone https://github.com/LearnWebCode/welcome-to-git.git
+
+  Lecture 5 - Setup your github
+    create a new travel-site repo on Github server
+    on local machine, clone the starter files:
+    git clone https://github.com/LearnWebCode/travel-site-files.github
+    rename directory to "travel-site"
+    git remote -v (this tells you what Git thinks is the remote site)
+    to change the remote site:
+    git remote set-url origin https://github.com/echuderewicz/travel-site.git
+    now confirm:
+    git remote -v (you have just updated the location of your remote server)
+
+Section 3:
+  Lecture 6 - Node.js & NPM
+    automation and organization explained
+
+  Lecture 7 - A quick note
+
+  Lecture 8 - Node.js introduction
+    3 main parts:
+      What is Node.js
+      Help install
+      Example:
+        node experiment: create a file and retrieve an image from the internet
+
+  Lecture 9 - NPM - Node Package Manager
+    npm install jquery (we did this first but then deleted it).
+    A better way is to create a grocery list:
+    npm init (this creates the package.json file)
+    npm install jquery --save (this updates the package.json file)
+    npm install normalize.css --save
+    to regenerate if you deleted jquery and normalize use command below
+    npm install
+  Lecture 10 - important note about version numbers
+    copied over the populated package.json file since many packages of much later versions
+    than the udemy video (a good way to avoid the pain of things not working)
+
+Section 4:
+  Lecture 11 - gulp
+    installing gulp globally
+      sudo npm install gulp-cli --global
+    adding gulp within project
+    npm install gulp --save-dev
+    touch gulpfile.js
+    need gulp plugins to do anything useful
+    npm install gulp-watch --save-dev
+    gulp watch (will start up the watch commmand. See gulp file)
+    ctrl-c to stop gulp watch
+
+  Lecture 12 - Gulp and PostCss
+    what is a css workflow - variables, nesting etc.
+    important gulp and node terms
+    Autoprefixer
+    PostCss = fastest to compile, new kid on the block
+    gulp.src, gulp.dest, pipe used in gulpfile.js
+    install PostCss:
+      npm install gulp-postcss --save-dev
+      npm install autoprefixer --save-dev
+      npm install postcss-simple-vars --save-dev
+      npm install postcss-nested --save-dev
+      all the above are then required into the gulpfile.js
+
+Section 5:
+  Lecture 13 - CSS File Architecture
+    file architecture - organize css code into smaller files
+    identify patterns
+    rules and guidlines to follow
+    npm install postcss-import --save-dev
+    started using css imports, created a css modules and base subfolder within the styles folder
+    positioned the large hero block vertically and horizontally over the banner image
+
+  Lecture 14 - What is the BEM methodology
+    B. - block
+    E. - element - belongs to a block
+    M. - modifier - a change to the default state of an object
+
+    *CSS selectors should target elements directly with classes, instead of relying on type selectors, descendent selectors, and the cascade.
+
+    *Because we are limiting cascade we are free to move blocks around and reuse them throughout the page. Blocks are independant and self contained.
+
+    *identify patterns, and the create single responsibility blocks
+
+    *makes the relationship between our HTML and CSS Clear
+
+    in the following classname .large-hero__title, the underscore prefix indicates that the following is an SUBELEMENT of the LARGER .large-hero block.
+
+    to create nesting. use the ampersand "&". For instance, right the above as "&__title" while nesting. This will then get transformed by postcss as .large-hero__title.
+
+  Lecture 15 -
+    discussion on rem.
+    font-size, padding, or margin should be declared using
+    rem. based on html element --> 1.5rem x 16px (default html) = 24px. Using px as a unit sets things in stone which isn't good.
+
+    styled buttons and was first exposed to using the -- nomenclature. for instance btn--orange, btn--large. This is how you specify MODIFIERS.
+
+Section 6
+
+  Lecture 16 - Gulp Timeout - leveraging browsersync
+    npm install browser-sync --save-dev
+  Lecture 17 - Organizing our gulpfile.js
+    created a gulp folder and then cut code from main gulpfile and placed it into a tasks/styles.js and task/watch.js files
+  Lecture 18 - Updated gulp so that it errors gracefully and logs a
+    message to the console without stopping
+
+Section 7
+
+  Lecture 19 - What does Mobile First Mean
+    from a Design Context: designing around a smaller screen first, forces us to prioritize our content, anticipate most common user actions, information architects, graphic designers, usability experts
+
+    from a Development Context: Coding the site so devices don't download unnecessary data, treat the most essential view of our website as our baseline and code upwards from there. Make the site load quickly for everyone
+
+    best practices for mobile first:
+      design for the smallest device (smart phone) and consider this the default. All devices sizes beyond use media queries @media
+
+    mixins discussed in middle of video
+      npm install postcss-mixins --save-dev
+      mixins were created in their own seperate file in the styles/base directory.
+      each mixin atSmall, atMedium, and atLarge contained a media query
+      this query was then essentially used as a trigger within certain class
+      elements within the _large-hero.css file. It almost acts like an "if" statement. if the media is "such and such", then modify "this" particular element accordingly. So everything is "triggered" by the size of the screen. This lesson is important to keep coming back to because it shows exactly how everything gets "wired" up. It's a bit complicated. 
+
+
+  Lecture 20 - Responsive Images
+    There are 2 reasons to use responsive images:
+      1. Art direction - different cropping
+      2. File Size to optimize download
+    Different ways to handle this. For the art direction reason you must
+    use the <picture> tag. 
+
+
+  Lecture 21 - Tips for responsive images
+    Author created images with the widths explicitely shown within the image itself. Being able to test all images especially the hi dpi versions
+    Google Chrome has a way to test pixel densities. Check 'responsive image option and change DPR to 2 (DPR stands for device pixel ratio'
+
+    I came up with a way in sublime to swap images with "i" suffix version. This handles the tedium of having to go to each individual filename and append the "-i".
+
+Section 8 - Let's Build
+  Lecture 22 - Creating Reusable Blocks
+    created a wrapper class to add spacing left and right for the mobile view header text. created a dark blue line under banner - browser treat elements as in-line by default, in other words, it treats them like text, provide space below but making it block level will removed this behavior. It treats it more like a div where it's more like a square that aligns perfectly. 
+
+    also adjusted the mixins for the font sizes for the default: atTiny and atSmall. Note, there isn't atTiny, it's just that we refer to the default as that (mobile first) and that everything else above at beyond gets called out. 
+
+    Lots of progress was made in this section and to note: I had skipped adding part of the code from Lecture 19 which dealt with media queries so this commit will be a bit of a hodge podge.
+
+  Lecture 23 - Headline Block
+    styled the headline block for both large and small screen. Lots of back and forth. Essentially the workflow is to look at both form factors and decide what present styles are not working in the mobile form. You should go over this video multiple times to allow this to sink. There is potential for confusion to occur regarding this material. 
+
+  Lecture 24 - Reusable Column layout
+    started creating a 2 column layout. Author showed how to clear a float. The sloppy way first and then the right way. Author also did some convoluted gutter manipulation. Just seemed so "hacky" -- used overflow:hidden to make this work, occurred around 15 minutes into the lesson. Here is a list of what he did: 
+
+      1. created (2) column layout
+      2. added right gutter to both columns
+      3. used border box so avoid exceeding max width
+      4. added -65px margin to parent row
+      5. this then extended beyond max width
+      6. used overflow hidden to remove the -65px
+      7. my only guess was that it was to preserver the 4/8 column row split
+    
+  Lecture 25 - Attention to Detail - part 1 - making images responsive in "our beginning" section
+    added some bottom margin to 'our beginning section' using a media query mixin on the wrapper class. Adjusted for smaller screens as well.
+
+    Focused mainly of making on making the "first-trip" and "our-start" images responsive, this was very
+    complicated but we tested the same way we did with banner, use the "-i" versions to see which image
+    the browser serves up. 
+
+    Pretty much all the code that was added was in the index.html file....
+
+
+  Lecture 26 - Attention to Detail - part 2 - styling the text in the "our beginning" section
+    more tedium
+
+Section 9
+  Lecture 27 - GIT Branches
+    this section went through how to checkout branches. It's pretty straightforward
+    make sure working directory is clean before creating a new branch
+    git branch <name>
+    git branch (lists branches)
+    git checkout <name>
+    git checkout master (switching back to master branch)
+    now within master you can merge the branch you were working on
+    git merge <name> (this adds the branch history as well) 
+
+    Here is a way to add and commit in one command:
+    git commit -am "message"
+
+    Deleting a branch
+    git branch -d <name>
+
+    Moving on: 
+    author also showed a way to merge from github, It looked a little complicated
+    and I'll problably not use it as much.
+
+    here is a way to name a branch and check it out in one command
+    git checkout -b <name>
+
+Section 10 - Our Features Section
+  Lecture 28
+    see above for how to name and checkout a new branch in one command
+    Styled the our features section but didn't complete it (still had to finish the mobile view). Leveraged some of what was created before
+    to create styling, namely 2 column layout. This section was much less tedious than the previous section. 
+  Lecture 29: continuation of styling the Our Features Section
+    Finished styling our features section
+    discussed the following git command
+    git merge our-features --no-ff (stands for no fast forward) - this didn't
+    quite work the way the video depicted it. I might want to test this out again.
+    it appears to be a way to consolidate all the commits that occurred while you
+    were in the branch. So in other words, the commit history isn't carried over. It
+    compressed.
+
+  Section 11 - Building Testimonial Section
+
+    Lecture 30:
+      git checkout -b testimonials
+      fairly straightforward regarding styling the left most testimonial
+
+    Lecture 31: 
+      continued to style testimonials and made it look good for small screens.
+      This one had a bit of styling content that was leveraging previous material and I was getting lost
+
+    Lecture 32:
+      additional testimonial styling and configuring the content to adjust at a slightly 
+      different breakpoint. Instead of testimonials stacking once screen get to medium the 
+      author wanted have the stacking occur when the testimonials met the atLarge breakpoint.
+      This was due to the testimonials get "scrunched" together. 
+
+      We then merged the testimonials branch into master and then pushed this up to github.
+
+  Section 12: Gulp Timeout (Automated Sprites)
+
+    Lecture 33: sprite file generation
+      created a new sprites.js file to run a new gulp task
+      below is how we installed the npm package
+
+      npm install gulp-svg-sprite --save-dev
+
+      svg sprite package has documentation on github
+
+    Lecture 34: 
+      npm install gulp-rename --save-dev
+      lots of small tweaks to sprite automation
+
+    Lecture 35:
+      npm install del --save-dev
+
+  Section 13: Finish Styling the site
+
+    Lecture 36: Styling the Footer
+      checked out a new site-footer branch
+      review use of span - I'm not sure why the author 
+      is using this
+
+      as a side note, I made some commit message mistakes
+      and successfully went back and fixed them with the 
+      following commands:
+
+      git commit --amend (for previous commits)
+      git rebase -i HEAD~3 (note that 3 represents the previous 3 commits, you'll open up in a text editor which will allow
+      you to configure a line from "pick" to "reword", it will then send
+      you into another vim to update the commit message. See 
+      instructions here: 
+      https://help.github.com/articles/changing-a-commit-message/
+
+      also re: using VIM - hit 'i' for interactive (editing)
+      once done hit escape
+
+      also getting git to open sublime instead of vim
+      https://www.youtube.com/watch?v=XD2O9EF58kI
+
+      export GIT_EDITOR="subl --wait --new-window"
+      to make this above permenent I placed into .profile within
+      home directory. Every time the terminal opens it will read
+      the variable as result of .profile directory existing within
+      my $PATH
+
+      I then added that directory to my $PATH variable
+      PATH=$PATH:~/.profile
+
+      obviously from above you have to have "subl" configured
+
+      getting subl to work: follow the link below
+
+      https://olivierlacan.com/posts/launch-sublime-text-3-from-the-command-line/
+
+      sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+      
+    Lecture 37: Styling the Header
+      npm install postcss-hexrgba --save-dev
+      This command above allows you to write variables
+      within the rgba command, like so:
+      background-color: rgba($mainBlue, .3) instead of 
+      background-color: rgba(47, 85, 114, .3);
+      Completed styling the header for large screens
+
+    Lecture 38:
+      Completed styling the header for small screens
+
+  Section 14: Javascript Organization
+
+    Lecture 39:
+      Quick lesson on objects. No updates were made to the travel-site
+
+    Lecture 40: The JS module Pattern and 'webpack'
+
+      It should be noted that I had a lot of issues due to the current webpack version
+      not being compatible with the lecture. The problems occurred with running this
+      command
+      npm install webpack -g (you can't run this )
+      it's got to be:
+      sudo npm install -g webpack@3.8.1 (this is in the package.json file)
+      The notes below are a record of my troubles:
+
+              installing webpack
+              npm install webpack -g (globally)
+
+              to run webpack just type the following into terminal:
+              webpack (din't quite work because webpack and it's cli version are 
+              two seperate files);
+
+              I got this message so I said yes:
+              Would you like to install webpack-cli? (That will run npm install -D webpack-cli) (yes/NO)yes. This didn't work
+
+              So then I installed webpack as follows
+              sudo nmp install webpack --save-dev
+              then
+              sudo npm install -D webpack-cli --save-dev
+
+              npm WARN webpack-cli@2.0.14 requires a peer of webpack@^4.0.0 but none is installed. You must install peer dependencies yourself.
+                npm WARN ajv-keywords@3.1.0 requires a peer of ajv@^6.0.0 but none is installed. You must install peer dependencies yourself.
+                npm WARN travel-site@1.0.0 No description
+                npm WARN travel-site@1.0.0 No repository field.
+                npm WARN travel-site@1.0.0 No license field.
+
+        In addition to sort out things out and checkout master I learned stashing
+        I've included some commands here:
+
+        git stashing:
+          git stash
+          git stash list
+          git stash pop
+
+        had issues installing jquery
+        I removed the package-lock.json file as explained below:
+        https://github.com/npm/npm/issues/17340
+
+    Lecture 41: Automating our webpack setup
+      configured it so that 'webpack command can be called automagically'
+      browser automagically reloads after saved .js file
+
+    Lecture 42: Babel
+      install babel:
+        npm install babel-core babel-loader babel-preset-es2015 --save-dev
+
+  Section 15: Writing Javascript for our header menu
+
+    Lecture 43: How to avoid jQuery spaghetti code
+      We were able to wire up the mobile menu with jquery
+      This was my favorite lecture thus far!
+
+    Lecture 44: Adjusting our mobile menu. There were a lot of
+      of css tips and tricks that I didn't quite follow. Come
+      back to this.
+      
+    Lecture 45: Animating the hamburger menu
+
+    ***had difficulty getting the header branch to merge
+    properly, stack overflow had a solution that worked perfectly
+
+    https://stackoverflow.com/questions/2763006/make-the-current-git-branch-a-master-branch
+
+
+  Section 16: Revealing elements on scroll
+
+    Lecture 46:
+      npm install waypoints --save
+      got waypoints functioning properly
+
+    Lecture 47:
+      tweaked waypoints
+
+  Section 17: Desktop Sticky Header
+
+    Lecture 48: 
+      completed
+    Lecture 49:
+      setting up links to change color when your scroll
+      to the correct section of the page. 
+
+      to add smooth scrolling
+      npm install jquery-smooth-scroll --save
+
+  Section 18: Build our own Modal/ Lightbox
+
+    Lecture 50: Building a Modal from Scratch (part 1)
+
+    Lecture 51: Building a Modal from Scratch (part 2)
+
+  Section 19: Finishing Touches
+
+    Lecture 52: Lazy Loading Images for Faster Page Loads
+    
+      Went to developer tools and looked at "Network" tab
+      to see how fast images are loading
+
+      npm install lazysizes --save
+
+      We created a new file called Vendor.js. The reason
+      is for javascript packages that runs on their own without
+      any supplimental code like lazysizes. This is a best practice.
+
+      Need to prepend scrset to yield data-srcset and also
+      need to add a class called 'lazyload'
+
+    Lecture 53: Lazy Loading & Our Custom Waypoints
+      Custom waypoints get messed up because they are calculated
+      assuming all images are loaded. To fix this, you have to 
+      refresh the custom waypoints everytime a new image is loaded
+
+    Lecture 54: Support for Responsive Images in Legacy Browser
+      git checkout -b browser-support
+      npm install picturefill --save
+
+    Lecture 55: Support for SVG Icons in Legacy Browsers (Part 1)
+      npm install gulp-svg2png --save-dev
+      npm install gulp-modernizr --save-dev
+
+    Lecture 56: Support for SVG Icons in Legacy Browsers (Part 2)
+      holy crap was this tedious....need to review this
+
+    Lecture 57: Support for Flexbox Layout in Legacy Browsers
+
+
+  Section 20: Building and Deploying
+
+    Lecture 58: Preparing Our Files for Go Live (Part 1)
+      npm install gulp-imagemin --save-dev
+
+    Lecture 59: Preparing Our Files for Go Live (Part 2)
+      copy images to docs folder (it's also called dist but github uses docs)
+      3 goals:
+        Copy to docs folder
+        compress file-size
+        revision
+
+        npm install gulp-usemin --save-dev
+        npm install gulp-rev gulp-cssnano gulp-uglify --save-dev
+
+    Lecture 60: Go Live! Deploying our Site to GitHub Pages
+      
+
+    Lecture 61: Git Tips - How to Handle (and avoid) Merge conflicts
+
+  Section 21: Looking Forward
+
+    Lecture 62
+    Lecture 63
+
+
+    other notes: 
+    git config --global alias.hist "log --oneline --graph --decorate --all"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
