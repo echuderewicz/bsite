@@ -1,0 +1,14 @@
+I basically cloned the travel-sites project that I did while watching
+"Git a Webdev job" on Udemy. Here were the steps: 
+
+a. while in sites folder git clone http://github.com/echuderewicz/travel-site.git ./bsite (bsite folder was created first)
+b. create a new repo at Github, named it bsite (for business site)
+c. I deleted the old hidden git files from travel-site so that I could start fresh
+d. I then had to git init
+e. added the remote: 
+	1. git remote add http://github.com/echuderewicz/bsite.git
+f. made some tweaks to .gitignore, mainly I wanted to ignore the images file where i'm 
+	performing my design work in photohop.
+g. made tome initial commits to make sure everything was working
+h. for some reason can't get the site on my phone....not sure why
+
